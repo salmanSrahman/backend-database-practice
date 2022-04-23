@@ -13,7 +13,6 @@ function App() {
     event.preventDefault();
     const name = event.target.name.value;
     const email = event.target.email.value;
-    console.log(name, email);
     const user = { name, email };
 
     fetch("http://localhost:5000/user", {
@@ -25,7 +24,7 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        const newUser = [...user, data];
+        const newUser = [...users, data];
         setUsers(newUser);
       });
   };
@@ -44,7 +43,9 @@ function App() {
       </form>
       <ul>
         {users.map((user) => (
-          <li key={user.id}>{user.id}: {user.name}</li>
+          <li key={user.id}>
+            {user.id}: {user.name}
+          </li>
         ))}
       </ul>
     </div>
