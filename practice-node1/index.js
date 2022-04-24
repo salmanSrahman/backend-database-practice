@@ -6,14 +6,23 @@ app.use(cors());
 app.use(express.json());
 
 const users = [
-  { id: 1, name: "Taskin", no: "017000000" },
-  { id: 2, name: "Asghar", no: "018111111" },
+  { id: 1, name: "Taskin Asghar", no: "017000000" },
+  { id: 2, name: "Asghar Stanikzai", no: "018111111" },
   { id: 3, name: "Stanikzai", no: "019222222" },
-  { id: 4, name: "Hamdullah Mohib", no: "019222222" },
+  { id: 4, name: "Hamdullah Mohib Taskin", no: "019222222" },
   { id: 5, name: "Zabiullah Janat", no: "0154444444" },
 ];
 app.get("/users", (req, res) => {
-  res.send(users);
+  console.log("query", req.query);
+  if (req.query.name) {
+    const search = req.query.name.toLowerCase();
+    const matched = users.filter((user) =>
+      user.name.toLowerCase().includes(search)
+    );
+    res.send(matched);
+  } else {
+    res.send(users);
+  }
 });
 
 app.get("/user/:id", (req, res) => {
