@@ -1,16 +1,16 @@
 import React from "react";
 
 const AddUser = () => {
-  const handleAddToUser = (event) => {
+  const handleAddUser = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
     const email = event.target.email.value;
     const user = { name, email };
 
-    fetch("http://localhost:5000/user", {
+    fetch('http://localhost:5000/user', {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "content-type": "application/json",
       },
       body: JSON.stringify(user),
     })
@@ -23,7 +23,7 @@ const AddUser = () => {
   return (
     <div>
       <h1>Add Your User.</h1>
-      <form onSubmit={handleAddToUser}>
+      <form onSubmit={handleAddUser}>
         <input type="text" name="name" placeholder="Name" required />
         <br />
         <br />
